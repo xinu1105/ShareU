@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - ShareU Online Clothing Shop</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <section id="sign up">
+        <div class="form-container">
+            <h1>Login</h1>
+            <form action="#" onsubmit="redirectToHomepage(event)">
+                <input type="text" placeholder="Username">
+                <input type="password" placeholder="Password">
+                <div class="recover">
+                    <a href="#">Forget paddword?</a>
+                </div>
+                <button type="submit">Login</button>
+            </form>
+            <div class="member">
+                Not a member?<a href="./signup.html">
+                Register Now</a>
+            </div>
+        </div>
+        <script>
+            function redirectToHomepage(event) {
+                event.preventDefault();
+                window.location.href = "index.html";
+            }
+        </script>
+    </section>
+</body>
+</html>

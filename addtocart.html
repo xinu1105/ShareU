@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<link rel="stylesheet" href="addtocart.css">
+	<script src="https://kit.fontawesome.com/92d70a2fd8.js" crossorigin="anonymous"></script>
+</head>
+<body>
+	<div class="header">
+		<p class="logo">Logo</p>
+		<div class="cart"><i class="fa-solid fa-cart-shopping"></i><p id=count>0</p></div>
+	</div>
+	<div class="container">
+		<div id="root" class="product-container"></div>
+		<div class="sidebar">
+			<div class="head"><p>My Cart</p></div>
+			<div id="cartItem">Your cart is empty</div>
+			<div class="foot">
+				<h3>Total</h3>
+				<h2 id="total">$ 0.00</h2>
+				<button id="checkoutButton" class="checkoutButton" style="display:block;" onclick="goToPayment()">Checkout</button> 
+			</div>
+		</div>
+	</div>
+
+	<script>
+		const products = [
+        { id: 0, title: 'Plan A T-SHIRT', price: 139, image: 'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10185830/0/638630343570970000?v=1' },
+        { id: 1, title: 'Smile T-SHIRT', price: 139, image: 'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10145180/0/638639274048770000?v=1' },
+        { id: 2, title: 'Smile SLEEVELESS GARMENT', price: 139, image: 'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10163432/2/638630324827200000?v=1' },
+        { id: 3, title:'Plan A COAT', price: 209, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10185702/4/638630696643930000?v=1' },
+        { id: 4, title:'Plan A BLACK CLOTHES', price: 209, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Cropped/SalePage/10185021/0/638630344283030000?v=1'},
+        { id: 5, title:'Plan A TROUSERS-BLACK', price: 129, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10185256/0/638630344088470000?v=1'},
+        { id: 6, title:'Smile LONG SKIRT', price: 129, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10162838/0/638633200787270000?v=1'},
+        { id: 7, title:'Smile COAT', price: 209, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10163253/8/638633202195900000?v=1'},
+        { id: 8, title:'Plan A OVERSIZE COAT', price: 209, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/9198078/0/638630325638970000?v=1'},
+        { id: 9, title:'Starting A SHIRT', price: 209, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/9810444/0/638632188942330000?v=1'},
+        { id: 10, title:'Plan A COTTON SHIRT', price: 139, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/9197919/0/638632188543500000?v=1'},
+        { id: 11, title:'Plan A HOODIE', price: 139, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10185956/0/638630567744600000?v=1'},
+        { id: 12, title:'Plan A CONTRAST T-SHIRT', price: 139, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10185370/0/638630344017300000?v=1'},
+        { id: 13, title:'Plan A TROUSERS-BLUE', price: 129, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Cropped/SalePage/10185280/0/638630344050570000?v=1'},
+        { id: 14, title:'Smile  ZIP-UP HOODIE', price: 159, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10162778/4/638640907235800000?v=1'},
+        { id: 15, title:'Smile T-SHIRT BLACK', price: 139, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10145215/2/638640907239370000?v=1'},
+        { id: 16, title:'Smile SLEEVE T-SHIRT', price: 139, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10145199/2/638640907244900000?v=1'},
+        { id: 17, title:'Smile TROUSERS', price: 139, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10163399/3/638640907223770000?v=1'},
+        { id: 18, title:'Snoopy SHIRT-COOL', price: 139, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/9987313/7/638640907310230000?v=1'},
+        { id: 19, title:'Snoopy SHIRT-HUG', price: 139, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/9987345/5/638640907310430000?v=1'},
+        { id: 20, title:'Snoopy COAT', price: 209, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10212695/3/638640907181830000?v=1'},
+        { id: 21, title:'Snoopy COTTON SHIRT', price: 159, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10213330/3/638640907172270000?v=1'},
+        { id: 22, title:'Sanrio SHIRT-BESTFRIEND', price: 139, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10199968/4/638635728650600000?v=1'},
+        { id: 23, title:'Sanrio SHIRT-SPORT TOGETHER', price: 139, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10085554/5/638640907265700000?v=1'},
+        { id: 24, title:'Sanrio SHIRT-PLAY', price: 139, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10085551/1/638640907267470000?v=1'},
+        { id: 25, title:'Sanrio SHIRT-SMILE', price: 139, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10008646/1/638640907296930000?v=1'},
+        { id: 26, title:'Smile WOOL HAT', price: 109, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10163305/8/638640907228300000?v=1'},
+        { id: 27, title:'Plan A NECKLACE', price: 119, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/9321865/1/638640907769570000?v=1'},
+        { id: 28, title:'Plan A SCARF', price: 159, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/8242993/1/638640908446670000?v=1'},
+        { id: 29, title:'Smile NECKLACE', price: 119, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10049763/7/638640907287800000?v=1'},
+        { id: 30, title:'Smile SOCKS', price: 99, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10163293/2/638640907226730000?v=1'},
+        { id: 31, title:'Snoopy SOCKS', price: 99, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/10212663/4/638640907185700000?v=1'},
+        { id: 32, title:'Plan A KEYCHAIN', price: 89, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/9372165/6/638640907739600000?v=1'},
+        { id: 33, title:'Nobody KEYCHAIN', price: 89, image:'https://diz36nn4q02zr.cloudfront.net/webapi/imagesV3/Original/SalePage/9761482/8/638640907477000000?v=1'}
+        ];
+
+		const cart = JSON.parse(localStorage.getItem('cart')) || [];
+		let total = cart.reduce((acc, item) => acc + item.price, 0);
+
+		function addToCart(title, price) {
+			const item = { title, price };
+            cart.push(item);
+            total += price;
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            document.getElementById('count').innerText = cart.length;
+            updateCartDisplay();
+            alert(`${title} has been added to your cart!`);
+        }
+
+        function removeFromCart(index) {
+			total -= cart[index].price; 
+			cart.splice(index, 1); 
+			localStorage.setItem('cart', JSON.stringify(cart)); 
+			updateCartDisplay(); 
+			document.getElementById('count').innerText = cart.length; 
+		}
+
+        function updateCartDisplay() {
+        	const cartItemContainer = document.getElementById('cartItem');
+            cartItemContainer.innerHTML = ''; 
+            if (cart.length === 0) {
+            	cartItemContainer.innerText = 'Your cart is empty';
+            	document.getElementById('checkoutButton').style.display = 'none'; 
+            } else {
+                cart.forEach((item,index)=> {
+                	const itemElement = document.createElement('p');
+                    itemElement.innerHTML= `${item.title} - $${item.price}.00 <button class="remove-button" onclick="removeFromCart(${index})">Remove</button>`;
+                    cartItemContainer.appendChild(itemElement);
+                });
+                document.getElementById('checkoutButton').style.display = 'block';
+            }
+            document.getElementById('total').innerText = `$ ${total}.00`; 
+        }
+
+        function goToPayment() {
+        	if (cart.length === 0) {
+        		alert("Your cart is empty. Add items before checking out.");
+                return;
+            }
+
+            if (confirm("Proceed to payment?")) {
+                localStorage.removeItem('cart');
+                cart.length = 0;
+                total = 0;
+
+                document.getElementById('count').innerText = cart.length;
+                updateCartDisplay();
+
+                window.location.href = 'payment.html';
+            }
+        }
+
+        window.onload = function() {
+			total = cart.reduce((acc, item) => acc + item.price, 0);
+   
+            document.getElementById('count').innerText = cart.length;
+            updateCartDisplay();
+
+            document.getElementById('root').innerHTML = products.map(product => `
+				<div class="product">
+					<img src="${product.image}" alt="${product.title}" width="150" height="150">
+					<p>${product.title}</p>
+					<h2>$${product.price}.00</h2>
+					<button class="add-to-cart-button" onclick="addToCart('${product.title}', ${product.price})">
+					    <i class="fa-solid fa-cart-shopping"></i>Add to Cart
+					</button>
+				</div>
+			`).join('');
+        };
+    </script>
+</body>
+</html>
+

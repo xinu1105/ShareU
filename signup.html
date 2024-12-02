@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - ShareU Online Clothing Shop</title>
+    <link rel="stylesheet" href="signup.css">
+</head>
+<body>
+    <section id="sign up">
+        <div class="form-container">
+            <h1>Sign Up</h1>
+            <form onsubmit="validateForm(event)">
+                <input type="text" id="username" placeholder="Username">
+                <input type="text" id="name" placeholder="Name">
+                <input type="password" id="password" placeholder="Password">
+                <input type="password" id="repassword" placeholder="Re-Enter Password">
+                <button type="submit">Sign Up</button>
+            </form>
+            <div class="terms">
+                <input type="checkbox" id="checkbox">
+                <label for="checkbox">I agree to these<a href="#">Terms and Conditions</a></label>
+            </div>
+            <div class="member">
+                Already a member?<a href="./login.html">
+                Login Here</a>
+            </div>
+        </div>
+        <script>
+            function validateForm(event) {
+                event.preventDefault(); 
+
+                const username = document.getElementById("username").value.trim();
+                const name = document.getElementById("name").value.trim();
+                const password = document.getElementById("password").value;
+                const repassword = document.getElementById("repassword").value;
+                const checkbox = document.getElementById("checkbox").checked;
+
+                if (!username || !name || !password || !repassword) {
+                    alert("Please fill in all fields.");
+                    return;
+                }
+
+                if (password !== repassword) {
+                    alert("Passwords do not match. Please re-enter.");
+                    return;
+                }
+
+                if (!checkbox) {
+                    alert("You must agree to the Terms and Conditions.");
+                    return;
+                }
+
+                window.location.href = "index.html";
+            }
+        </script>
+    </section>
+</body>
+</html>

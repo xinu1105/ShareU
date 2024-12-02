@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0">
+	<title>Payment ShareU</title>
+	<link rel="stylesheet" href="payment.css">
+	<script>
+		function handlePayment(event) {
+			event.preventDefault(); 
+			window.location.href = "submit.html";
+		}
+	</script>
+</head>
+<body>
+	<div class="container">
+		<form onsubmit="handlePayment(event)">
+			<div class="row">
+				<div class="column">
+					<h3 class="title">Billing Address</h3>
+					<div class="input-box">
+						<span>Full Name:</span>
+						<input type="text" id="fullName" placeholder="Hacken Lee">
+					</div>
+					<div class="input-box">
+						<span>Email:</span>
+						<input type="email" id="email" placeholder="hacken1206@gmail.com">
+					</div>
+					<div class="input-box">
+						<span>Address:</span>
+						<input type="text" id="address" placeholder="Room-Street-Locality">
+					</div>
+					<div class="input-box">
+						<span>City:</span>
+						<input type="text" id="city" placeholder="Ipoh">
+					</div>
+					<div class="flex">
+						<div class="input-box">
+							<span>State:</span>
+							<input type="text" id="state" placeholder="Perak">
+						</div>
+						<div class="input-box">
+							<span>Zip Code:</span>
+							<input type="number" id="zip" placeholder="123 456">
+						</div>
+					</div>
+				</div>
+
+				<div class="column">
+					<h3 class="title">Payment</h3>
+					<div class="input-box">
+						<span>Cards Accepted:</span>
+						<img src="https://www.southernrootsperiodontics.com/wp-content/uploads/sites/13/2019/04/accepted-credit-cards-horizontal.png" alt="">
+					</div>
+					<div class="input-box">
+						<span>Name On Card:</span>
+						<input type="text" id="cardName" placeholder="Hacken Lee">
+					</div>
+					<div class="input-box">
+						<span>Credit Card Number:</span>
+						<input type="number" id="cardNumber" placeholder="1111 2222 3333 4444">
+					</div>
+					<div class="input-box">
+						<span>Exp.Month:</span>
+						<input type="text" id="expMonth" placeholder="August">
+					</div>
+					<div class="flex">
+						<div class="input-box">
+							<span>Exp.Year:</span>
+							<input type="number" id="expYear" placeholder="2026">
+						</div>
+						<div class="input-box">
+							<span>CW:</span>
+							<input type="number" id="cw" placeholder="123">
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<button type="submit" class="btn">Submit</button>
+		</form>
+	</div>
+</body>
+</html>
